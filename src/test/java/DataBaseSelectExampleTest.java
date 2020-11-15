@@ -1,37 +1,54 @@
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.*;
 
 public class DataBaseSelectExampleTest {
-//    public static void main(String[] args) {
-//        Connection conn1 = null;
-//
-//        try {
-//            String url1 = "jdbc:mysql://127.0.0.1:3306/schema1";
-//            String user = "user";
-//            String password = "user";
-//
-//            conn1 = DriverManager.getConnection(url1, user, password);
-//            if (conn1 != null) {
-//                System.out.println("Connected to the database test1");
-//            }
-//
-//            Statement statement1 = conn1.createStatement();
-//            ResultSet resultSet = statement1.executeQuery("SELECT * FROM schema1.student;");
-//
-////            String[] arr = null;
-////            while(resultSet.next()){
-////                String em = resultSet.getString("name");
-////                arr = em.split("\n");
-////                for (int i=0; i<arr.length; i++){
-////                    System.out.println(arr[i]);
-////                }
-////            }
+    public static void main(String[] args) {
+        Connection connection = null;
+
+        try {
+            String url = "jdbc:mysql://127.0.0.1:3306/DATABASE_TEST";
+            String user = "root";
+            String password = "5913tanya";
+
+            connection = DriverManager.getConnection(url, user, password);
+            if (connection != null) {
+                System.out.println("Connected to the database test");
+            }
+
+            Statement statement = connection.createStatement();
+            //select
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM schema1.student;");
+
+            //only names
+            String[] arr = null;
+            while (resultSet.next()) {
+                String em = resultSet.getString("name");
+                arr = em.split("\n");
+                for (int i = 0; i < arr.length; i++) {
+                    System.out.println(arr[i]);
+                }
+            }
+
+//            print all data from rows
 //            List allRows = new ArrayList();
-//
-//        }
-//    }
+//            int numberColumns = 4;
+//            while (resultSet.next()) {
+//                String[] currentRow = new String[numberColumns];
+//                for (int i = 1; i <= numberColumns; i++) {
+//                    currentRow[i - 1] = resultSet.getString(i);
+//                    System.out.println(currentRow[i - 1] + " ");
+//                }
+//                System.out.println();
+//                allRows.add(currentRow);
+//            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }

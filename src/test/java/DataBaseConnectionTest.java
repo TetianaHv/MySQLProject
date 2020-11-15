@@ -11,9 +11,9 @@ public class DataBaseConnectionTest {
 
         try {
             //connect way #1
-            String url1 = "jdbc:mysql://127.0.0.1:3306/schema1";
-            String user = "user";
-            String password = "user";
+            String url1 = "jdbc:mysql://127.0.0.1:3306/DATABASE_TEST";
+            String user = "root";
+            String password = "5913tanya";
 
             conn1 = DriverManager.getConnection(url1, user, password);
             if (conn1 != null) {
@@ -21,17 +21,17 @@ public class DataBaseConnectionTest {
             }
 
             //connect way #2
-            String url2 = "jdbc:mysql://127.0.0.1:3306/schema1?user=user&password=user";
+            String url2 = "jdbc:mysql://127.0.0.1:3306/DATABASE_TEST?user=root&password=5913tanya";
             conn2 = DriverManager.getConnection(url2);
             if (conn2 != null) {
                 System.out.println("Connected to the database test2");
             }
 
             //connect way #3
-            String url3 = "jdbc:mysql://127.0.0.1:3306/schema1";
+            String url3 = "jdbc:mysql://127.0.0.1:3306/DATABASE_TEST";
             Properties info = new Properties();
-            info.put("user", "user");
-            info.put("password", "user");
+            info.put("user", "root");
+            info.put("password", "5913tanya");
 
             conn3 = DriverManager.getConnection(url3, info);
             if (conn3 != null) {
